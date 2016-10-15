@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <ul class="list-group">
+            {% for todo in todo_list %}
+            <li class="list-group-item">
+                <a href="{% url 'todo-edit' todo.pk %}">
+                {{ todo }}
+                {% if todo.status %}
+                <span class="label label-success pull-right">Done</span>
+                {% else %}
+                <span class="label label-default pull-right">Todo</span>
+                {% endif %}
+                </a>
+            </li>
+            {% empty %}
+            <dd>Nothing found</dd>
+            {% endfor %}
+        </ul>
+        <a class="btn btn-default" href="{% url 'todo-add' %}">Add New</a>
+    </div>
+</div>
+{% endblock %}
